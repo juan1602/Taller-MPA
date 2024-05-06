@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>Sumar Stock</title>
+{% endblock extrahead%}
+
+{% block content %} 
+<h1 class="display-3" id="title">Agregar Stock</h1>
+<p>Ingrese los datos del producto que quiere sumar</p>
+<div class="container formulario">
+    <form method="POST" enctype="multipart/form-data">
+        <!-- Security token -->
+        {% csrf_token %}
+     
+        <!-- Renderizar los campos del formulario -->
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+
+        <!-- Botones para enviar el formulario o cancelar -->
+        <input type="submit" value="Guardar" class="btn btn-success">
+        <a href="{% url 'productosIndex' %}" class="btn btn-danger">Cancelar</a>
+    </form>   
+</div>
+{% endblock content%}

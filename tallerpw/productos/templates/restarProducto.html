@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>Restar Stock</title>
+{% endblock extrahead %}
+
+{% block content %} 
+<h1 class="display-3" id="title">Restar Stock</h1>
+<p>Ingrese los datos del producto que desea restar</p>
+<div class="container formulario">
+    {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        <!-- Security token -->
+        {% csrf_token %}
+     
+        <!-- Using the formset -->
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+         
+        <input type="submit" value="Guardar" class="btn btn-success">
+        <a href="{% url 'productosIndex' %}" class="btn btn-danger">Cancelar</a>
+    </form>   
+</div>
+{% endblock content %}

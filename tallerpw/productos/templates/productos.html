@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %} 
+<title>Productos</title>
+<link rel="stylesheet" href="{% static '/css/productos.css' %}" >
+{% endblock extrahead%}
+
+{% block content %} 
+<h1>Lista de Productos</h1>
+<!-- Botones -->
+<div>
+    <a href="{% url 'sumarProducto' %}" class="btn-agregar">Agregar</a>
+    <a href="{% url 'restarProducto' %}" class="btn-retirar">Retirar</a>     
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Producto</th>
+      <th>Presentación</th>
+      <th>Cantidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for producto in productos %}
+    <tr>
+      <td>{{ producto.id }}</td>
+      <td>{{ producto.nombre }}</td>
+      <td>{{ producto.presentacion }}</td>
+      <td>{{ producto.cantidad }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
